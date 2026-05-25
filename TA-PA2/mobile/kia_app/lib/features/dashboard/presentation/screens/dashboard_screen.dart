@@ -34,6 +34,8 @@ import 'package:ta_pa2_pa3_project/features/dashboard/presentation/bloc/dashboar
 import 'package:ta_pa2_pa3_project/features/dashboard/presentation/bloc/dashboard_event.dart';
 import 'package:ta_pa2_pa3_project/features/dashboard/presentation/bloc/dashboard_state.dart';
 import 'package:ta_pa2_pa3_project/features/anak/anak/data/models/ibu_anak_model.dart';
+// GEO
+import 'package:ta_pa2_pa3_project/features/ibu/hamil/presentation/screens/emergency_faskes_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -229,6 +231,41 @@ class _DashboardViewState extends State<DashboardView> {
         ),
         const SizedBox(height: 32),
         _buildDangerAlert(),
+        const SizedBox(height: 16),
+        
+        // 🆕 TOMBOL DARURAT FASKES (TARUH DI SINI)
+        GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const EmergencyFaskesScreen()),
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFEBEE),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.red.shade300),
+            ),
+            child: const Row(
+              children: [
+                Icon(Icons.local_hospital_rounded, color: Colors.red),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Cari RS/Klinik Terdekat (Darurat)',
+                          style: TextStyle(fontSize: 12, color: Colors.red, fontWeight: FontWeight.bold)),
+                      Text('Gunakan GPS untuk menemukan faskes terdekat saat keadaan darurat',
+                          style: TextStyle(fontSize: 11, color: Colors.black54)),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right, color: Colors.red),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(height: 40),
       ],
     );
