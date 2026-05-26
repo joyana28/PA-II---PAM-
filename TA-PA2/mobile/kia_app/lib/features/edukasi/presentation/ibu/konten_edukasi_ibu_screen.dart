@@ -39,9 +39,7 @@ class _KontenEdukasiIbuScreenState extends State<KontenEdukasiIbuScreen> {
 
   // KONEKSI DATABASE ASLI (SAMA SEKALI TIDAK DIUBAH)
   final _trimesterRepository = EdukasiTrimesterRepository(
-    EdukasiTrimesterService(
-      baseUrl: 'http://localhost:8080',
-    ),
+    EdukasiTrimesterService(),
   );
 
   @override

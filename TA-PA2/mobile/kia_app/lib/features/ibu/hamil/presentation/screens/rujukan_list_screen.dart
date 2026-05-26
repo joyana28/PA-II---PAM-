@@ -12,6 +12,7 @@ import 'package:ta_pa2_pa3_project/core/services/auth_session.dart';
 import 'package:ta_pa2_pa3_project/features/ibu/hamil/data/services/kehamilan_api_service.dart';
 import 'rujukan_detail_screen.dart';
 import 'package:ta_pa2_pa3_project/core/constants/app_colors.dart';
+import 'package:ta_pa2_pa3_project/core/constants/api_constants.dart';
 
 class RujukanListScreen extends StatefulWidget {
   const RujukanListScreen({super.key});
@@ -38,8 +39,14 @@ class _RujukanListScreenState extends State<RujukanListScreen> {
 
       final kehamilan = await _kehamilanService.getKehamilanAktif();
       final response = await http.get(
-        Uri.parse("http://localhost:8080/modul-ibu/rujukan?kehamilan_id=${kehamilan.id}"),
-        headers: {"Authorization": "Bearer $token"},
+        Uri.parse(
+          ApiConstants.rujukanIbu(
+            kehamilan.id,
+          ),
+        ),
+        headers: {
+          "Authorization": "Bearer $token",
+        },
       );
 
       final body = jsonDecode(response.body);
